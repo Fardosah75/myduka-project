@@ -1,5 +1,6 @@
 #import the class Flask from the framework flask
 from flask import Flask,render_template
+from database import fetch_data
 #instance of the class(object)
 app=Flask(__name__)
 
@@ -9,14 +10,20 @@ def home():
     return render_template ('index.html')
 
 @app.route('/products')
-def prods():
-    return render_template ('products.html')
+def products():
+    prods=fetch_data('products')
+    
+    return render_template ('products.html',product=prods)
 
 @app.route('/sales')
-def sale():
-    return render_template ('sales.html')
+def sales():
+    sale=fetch_data('sales')
+    #print (sale)
+    return render_template ('sales.html',sale=sale)
 @app.route('/stocks')
 def stock():
-    return render_template ('stock.html')
+    stocks=fetch_data('stock')
+    #print(stocks)
+    return render_template ('stock.html',stocks=stocks)
 
 app.run()

@@ -21,8 +21,8 @@ def fetch_products():
     curr.execute('Select * from products;')
     prods=curr.fetchall()
     return prods
-myproducts=fetch_products()
-print(myproducts)
+#myproducts=fetch_products()
+#print(myproducts)
 
 #display sales on the terminal
 def fetch_sales():
@@ -30,8 +30,8 @@ def fetch_sales():
     curr.execute('select * from sales;')
     sales=curr.fetchall()
     return sales
-mysales=fetch_sales()
-print(mysales)
+#mysales=fetch_sales()
+#print(mysales)
 
 #display stock on the terminal
 def fetch_stocks():
@@ -39,13 +39,13 @@ def fetch_stocks():
     curr.execute('select * from stock;')
     stocks=curr.fetchall()
     return stocks
-mystocks=fetch_stocks()
-print(mystocks)
+#mystocks=fetch_stocks()
+#print(mystocks)
 
-#def fetch_data(table_name):
-   # curr.execute(f'select * from {table_name}')
-    #data=curr.fetchall()
-    #return data
+def fetch_data(table_name):
+    curr.execute(f'select * from {table_name}')
+    data=curr.fetchall()
+    return data
 #myproducts=fetch_data('products')
 #print(myproducts)
 #mysales=fetch_data('sales')
@@ -60,8 +60,8 @@ def insert_stock(values):
 
 new_stock=(4,30)   
 #insert_stock(new_stock) 
-mystocks=fetch_stocks()
-print(mystocks)
+#mystocks=fetch_stocks()
+#print(mystocks)
 
 
 #insert products
@@ -72,8 +72,8 @@ def insert_products(values):
 
 new_product=('orange',200,400)
 #insert_products(new_product)
-myproducts=fetch_products()
-print(myproducts)
+#myproducts=fetch_products()
+#print(myproducts)
 
 
 #insert sales
@@ -84,8 +84,8 @@ def insert_sales(values):
 
 new_sale=(2,5)
 #insert_sales(new_sale)
-mysales=fetch_sales()
-print(mysales)
+#mysales=fetch_sales()
+#print(mysales)
 
 
 def product_profit():
@@ -93,8 +93,8 @@ def product_profit():
     curr.execute(query)
     profit=curr.fetchall()
     return profit
-myprofits=product_profit()
-print(f'my products profit is{myprofits}')
+#myprofits=product_profit()
+#print(f'my products profit is{myprofits}')
 
 
 def product_sales():
@@ -102,5 +102,5 @@ def product_sales():
     curr.execute(query)
     sales=curr.fetchall()
     return sales
-mysale=product_sales()
-print(f'my product sales is {mysale}')
+#mysale=product_sales()
+#print(f'my product sales is {mysale}')

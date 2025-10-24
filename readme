@@ -21,3 +21,19 @@
 #in flask all css,images & js files are inside a folder called static folder
 #inside flask we have render_template function used to return html file
 
+
+#flask day 2
+#databse->serverside->flask(main)->frontend
+#Display products on main file
+#1.import fetch data function from database file
+#2.declare variable and call the function on its route and pass the table name as the argument
+
+#flask jinja-
+#this is a template engine for python flask
+#it lets you mix python-like code inside html(helps us to perform python operations on html)
+
+#how to write python-like code in html using jinja
+
+#variables are always in double curly braces{{}}
+#operations are in single curly braces with percentage signs{% %}
+#All oprations must be closed{%endof%}
