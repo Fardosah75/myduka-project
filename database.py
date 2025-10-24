@@ -94,7 +94,7 @@ def product_profit():
     profit=curr.fetchall()
     return profit
 myprofits=product_profit()
-print(f'my products profitinit is{myprofits}')
+print(f'my products profit is{myprofits}')
 
 
 def product_sales():

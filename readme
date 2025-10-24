@@ -1,0 +1,23 @@
+#steps to use flask
+#1.install flask  pip install flask
+#2.import the class Flask from the framework flask
+#3.create instance of the class the argument is the file name
+
+#from the flask (framework) import the class Flask
+#class is a blueprint & always starts with a capital
+#object is the actual representation of the blueprint(class)
+
+#route
+
+#used to connect a url with python function
+#@app.route('/')
+#app-instance of class(object) created earlier
+#('/') or ('/products') is the route
+#def home():
+    #return 'Hello world'
+
+#this is the python function
+#in flask all html files are inside a folder called templates
+#in flask all css,images & js files are inside a folder called static folder
+#inside flask we have render_template function used to return html file
+
