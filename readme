@@ -37,3 +37,7 @@
 #variables are always in double curly braces{{}}
 #operations are in single curly braces with percentage signs{% %}
 #All oprations must be closed{%endof%}
+
+
+    #flask day 3(display data in table)
+

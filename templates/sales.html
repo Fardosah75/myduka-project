@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2>my total sales</h2>
-    <p>{{sale}}</p>
+    <!--<p>{{sale}}</p>-->
    <table class="table-bordered">
   <thead>
     <tr>
@@ -19,12 +19,14 @@
     </tr>
   </thead>
   <tbody>
+    {% for sale in sale%}
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{sale[0]}}</td>
+      <td>{{sale[1]}}</td>
+      <td>{{sale[2]}}</td>
+      <td>{{sale[3]}}</td>
     </tr>
+    {% endfor %}
    
   </tbody>
 </table>

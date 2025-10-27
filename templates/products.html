@@ -10,7 +10,7 @@
     
         
     <h1>products to be displayed</h1>
-    <p>{{product}}</p>
+    <!--<p>{{product}}</p>-->
     <table class="table-bordered">
   <thead>
     <tr>
@@ -21,13 +21,14 @@
     </tr>
   </thead>
   <tbody>
+    {%for prod in product%}
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{prod[0]}}</td>
+      <td>{{prod[1]}}</td>
+      <td>{{prod[2]}}</td>
+      <td>{{prod[3]}}</td>
     </tr>
-    
+    {% endfor %}
   </tbody>
 </table>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
