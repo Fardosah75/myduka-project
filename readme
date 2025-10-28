@@ -41,3 +41,29 @@
 
     #flask day 3(display data in table)
 
+
+    #tag-keyword used to create element
+    #its not must for an if statement to have an else in python
+
+
+    #flask day 4
+#navigation using navbar
+#posting data(from ui->severside->database)
+    # http methods
+# get-used when fetching data on a resource(eg.database)
+# post-used when sending data to a resoure(database)  
+# put  
+
+#things to  note
+#each input on the form should have a name attribute
+#key error - given the wrong name
+#on main.py ,create a route that receives data from the form,checks the method and calls the insert function to add data
+#in the form action write the route and also write the method
+    #request in flask
+#used to request data from the ui
+
+    #redirect in flask
+#directs you to a url
+    #url for in flask
+#takes in a function name then takes you to its route
+
