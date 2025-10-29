@@ -35,7 +35,7 @@
     </div>
   </div>
 </nav>
-<!--modal-->
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add sales
@@ -50,21 +50,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="">
-          <div>
-            <label for="name">Enter name of the product</label><br>
-            <input type="text" id="name" required><br>
-            <label for="name">Enter buying price</label><br>
-            <input type="number" id="bp" required><br>
-            <label for="name">Enter selling price</label><br>
-            <input type="number" id="sp" required><br>
+        <form action="/add_sales" method="post">
+          <div><!--part4 select element-->
+            <label for="pid">Choose a product:</label>
+<select name="pid" id="pid">
+  {% for prod in products%}
+    <option value="{{prod[0]}}">{{prod[1]}}</option>
+
+    {% endfor %}
+    
+</select><br>
+        
+            <label for="name">Enter the quantity</label><br>
+            <input type="number" id="quantity" name="quantity" required><br>
+            <button type="submit"class="btn btn-primary"> Add sales</button>
+            
           </div>
         </form>
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        
       </div>
     </div>
   </div>
