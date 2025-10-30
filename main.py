@@ -73,8 +73,11 @@ def add_sales():
 @app.route('/stocks')
 def stock():
     stocks=fetch_data('stock')
+    #1.on stock route fetch products
+    products=fetch_data('products')
     #print(stocks)
-    return render_template ('stock.html',stocks=stocks)
+    #2.pass the pvariable to render template
+    return render_template ('stock.html',stocks=stocks,product=products)
 
 #create a route that will receive data from the form to serverside with method
 @app.route('/add_stocks',methods=['GET','POST'])
@@ -84,6 +87,7 @@ def add_stock():
     #check the method
     if request.method=='POST':
         #get the form inputs using the name attribute and store them in a variable
+        #get the name attribute for select element
         pid=request.form['pid']
         stock_quantity=request.form['s_quantity']
 
