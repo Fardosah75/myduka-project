@@ -1,3 +1,17 @@
+
+#MyDuka App is a modern point of sale system developed using tecnologies like python ,javascript,postgresql,html.css and bootsrap
+
+
+
+
+
+
+
+
+
+
+
+
 #steps to use flask
 #1.install flask  pip install flask
 #2.import the class Flask from the framework flask
