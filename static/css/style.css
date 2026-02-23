@@ -1,0 +1,65 @@
+/* static/css/style.css */
+.navbar{
+  color: purple;
+}
+.navbar:active{
+  color: aqua;
+
+}
+#hero-carousel{
+    position: relative;
+}
+
+.carousel-inner .carousel-item img{
+    height: 100vh;
+    object-fit: cover;
+}
+#hero-carousel .carousel-caption{
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 0;
+    bottom: 100;
+    background-color: (0, 0, 0, 0.45);
+    z-index: 10;
+    font-weight: bold;
+    color: aqua;
+   
+}
+#hero-carousel .btn{
+  background-color: white;
+  color: purple;
+  border-style: inset;
+  border-color: aqua;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+
+
+}
+#hero-carousel .btn:hover{
+  background-color: purple;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#hero-carousel  
+ h1,
+#hero-carousel p {
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

@@ -1,103 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <!--navbar-->
-    <nav class="navbar navbar-expand-lg bg-black navbar-dark mb-3 opacity-50">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MyDuka</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav ">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/products">products</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/sales">sales</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/stocks" >stock</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/dashboard" >Dashboard</a>
-        </li>
-      </ul>
+{% extends "layout.html" %}
+
+{% block head %}
+
+<title>Products</title>
+
+{% endblock %}
+{% block content %}
+<div class="container mt-5 pt-4">
+  <!--modal-->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add product
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/add_products" method="post">
+            <div>
+              <label for="name">Enter name of the product</label><br>
+              <input type="text" id="name" name="name" required><br>
+              <label for="buyingprice">Enter buying price</label><br>
+              <input type="number" id="bp" name="buyingprice" required><br>
+              <label for="sellingprice">Enter selling price</label><br>
+              <input type="number" id="sp" name="sellingprice" required><br>
+              <button type="submit" class="btn btn-primary"> Add product</button>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
     </div>
   </div>
-</nav>
-        <!--modal-->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Add product
-</button>
 
-<!-- Modal -->
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/add_products" method="post">
-          <div>
-            <label for="name">Enter name of the product</label><br>
-            <input type="text" id="name" name="name" required><br>
-            <label for="buyingprice">Enter buying price</label><br>
-            <input type="number" id="bp" name="buyingprice" required><br>
-            <label for="sellingprice">Enter selling price</label><br>
-            <input type="number" id="sp" name="sellingprice" required><br>
-            <button type="submit"class="btn btn-primary"> Add product</button>
+
+
+  <!--<p>{{product}}</p>-->
+
+  <!--table-->
+  <table class=" display display-bordered" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">Buying price</th>
+        <th scope="col">Selling price</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for prod in product%}
+      <tr>
+        <td>{{prod[0]}}</td>
+        <td>{{prod[1]}}</td>
+        <td>{{prod[2]}}</td>
+        <td>{{prod[3]}}</td>
+        <td>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#editproduct{{prod[0]}}" >
+            Edit
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade " id="editproduct{{prod[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/update_products" method="post">
+                    <div>
+                      <input type="hidden" name="id" value="{{prod[0]}}">
+                      <label for="name">Enter name of the product</label><br>
+                      <input type="text" id="name" name="name" value="{{prod[1]}}"><br>
+                      <label for="buyingprice">Enter buying price</label><br>
+                      <input type="number" id="bp" name="buyingprice" value="{{prod[2]}}"><br>
+                      <label for="sellingprice">Enter selling price</label><br>
+                      <input type="number" id="sp" name="sellingprice" value="{{prod[3]}}"><br>
+                      <button type="submit" class="btn btn-primary"> edit product</button>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+              </div>
+            </div>
           </div>
-        </form>
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
+{% endblock %}
+{% block script %}
+let table = new DataTable('#myTable');
 
-
-    <h1>products to be displayed</h1>
-    <!--<p>{{product}}</p>-->
-
-    <!--table-->
-    <table class="table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">name</th>
-      <th scope="col">Buying price</th>
-      <th scope="col">Selling price</th>
-    </tr>
-  </thead>
-  <tbody>
-    {%for prod in product%}
-    <tr>
-      <td>{{prod[0]}}</td>
-      <td>{{prod[1]}}</td>
-      <td>{{prod[2]}}</td>
-      <td>{{prod[3]}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

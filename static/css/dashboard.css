@@ -1,0 +1,15 @@
+.card{
+    box-shadow:rgba(0,0,0,1, green, blue);
+    border-style: inset;
+    border-color: aqua;
+    border-width: 2px;
+    border-radius: 20px;
+    
+}
+.card :hover{
+    background-color: blanchedalmond;
+    color: black;
+    border-radius: 20px;
+   
+
+}

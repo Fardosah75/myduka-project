@@ -1,44 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-</head>
-<body>
+{% extends "layout.html" %}
 
-     <nav class="navbar navbar-expand-lg bg-black navbar-dark  opacity-50">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MyDuka</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav ">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products">products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/sales">sales</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/stocks" >stock</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/dashboard" >Dashboard</a>
-        </li>
-      </ul>
+{% block head %}
+<title>Home</title>
+
+{%endblock%}
+
+{% block content %}
+<!--corousel-->
+<section id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+
+  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../static/images/3440.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../static/images/115414.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../static/images/3440.jpg" class="d-block w-100" alt="...">
+      </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-</nav>
-    <h1>My Duka Home Page</h1>
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-</body>
-</html>
+  <div class="carousel-caption d-flex  flex-column justify-content-center align-items-center ">
+    <h1 class="display-3 fw-bold opacity-75 p-4">My Duka app</h1>
+    <p class="lead text-white-100 bg-black p-3 opacity-100 border-3">Save Time.serve Better</p>
+    <a href="/register" class="btn btn-primary btn-lg mt-3">Get started</a>
+
+  </div>
+
+</section>
+
+{%endblock%}

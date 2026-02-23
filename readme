@@ -67,3 +67,19 @@
     #url for in flask
 #takes in a function name then takes you to its route
 
+    #sprofit per day
+# select DATE(s.created_at) as day, sum((p.selling_price - p.buying_price)*s.quantity) from products as p join sales as s on p.id=s.pid group by DATE(s.created_at);
+
+#sales per day
+#select DATE(s.created_at) as day, sum(p.selling_price*s.quantity) from products as p join sales as s on p.id=s.pid group by DATE(s.created_at);
+#def total_sales(month, year):
+   # query = """
+       # SELECT SUM(s.quantity * p.selling_price) AS total_sales
+       # FROM products p
+        #INNER JOIN sales s ON p.id = s.pid
+        #WHERE EXTRACT(MONTH FROM s.sale_date) = %s
+        #AND EXTRACT(YEAR FROM s.sale_date) = %s;
+    #"""
+    #curr.execute(query, (month, year))
+    #sale = curr.fetchone()
+    #return sale[0] if sale[0] is not None else 0

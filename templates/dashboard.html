@@ -1,0 +1,267 @@
+{% extends "layout.html" %}
+
+{% block head%}
+<title>dashboard</title>
+<link rel="stylesheet" href="../static/css/dashboard.css">
+
+
+{% endblock %}
+
+{% block content %}
+<div class="container  mt-2">
+  <div class="hero mb-2  d-flex justify-content-center">
+    <h1> Analytics Dashboard</h1>
+
+  </div>
+  <!--modal-->
+  <div class="box1 d-flex justify-content-end mb-3 ">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info p-2 border-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      select a month
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="month">Choose a month:</label>
+            <select name="month" id="month">
+              {% for month_num in mo %}
+              <option value="{{ month_num }}">{{ month_num }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary"> search</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row  ">
+    <div class="col-sm-12 col-md-3">
+      <div class="card mb-3 bg-primary h-100 text-white">
+        <div class="card-body ">
+          <h5 class="card-title">Total sales</h5>
+          <p class="card-text">{{mytotal_sale}}</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div class="card mb-3 bg-primary h-100 text-white">
+        <div class="card-body ">
+          <h5 class="card-title">Total profit</h5>
+          <p class="card-text">{{myprofits}}</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3 ">
+      <div class="card mb-3 bg-primary h-100 text-white">
+        <div class="card-body ">
+          <h5 class="card-title">Today's sales</h5>
+          <p class="card-text">{{ts_day}}</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <div class="card mb-3 h-100 bg-primary text-white">
+        <div class="card-body ">
+          <h5 class="card-title">Today's profit</h5>
+          <p class="card-text">{{tp_day}}</p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-6">
+      <canvas id="bar-chart" width="800" height="450"></canvas>
+
+    </div>
+    <div class="col-6">
+      <canvas id="line-chart" width="800" height="450"></canvas>
+
+    </div>
+    <div class="col-6">
+      <canvas id="bar-chart1" width="800" height="450"></canvas>
+
+    </div>
+    <div class="col-6">
+      <canvas id="line-chart1" width="800" height="450"></canvas>
+
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 mt-4 ">
+      <h3 class="title mb-4">Recent sales</h3>
+      <table class=" table table-success display bordered" id="myTable">
+        <thead>
+          <tr>
+
+
+            <th scope="col">sales.id</th>
+            <th scope="col">name</th>
+            <th scope="col">created_at</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {%for prod in rsales%}
+          <tr>
+            <td>{{prod[0]}}</td>
+            <td>{{prod[1]}}</td>
+            <td>{{prod[2]}}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6 mt-4 ">
+      <h3 class="title mb-4">top selling products</h3>
+      <table class=" table table-info display bordered" id="myTable">
+        <thead>
+          <tr>
+
+
+            <th scope="col">name</th>
+            <th scope="col">id</th>
+            <th scope="col">count</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {%for prod in tpp%}
+          <tr>
+            <td>{{prod[0]}}</td>
+            <td>{{prod[1]}}</td>
+            <td>{{prod[2]}}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+
+
+
+
+
+
+
+// Bar chart
+new Chart(document.getElementById("bar-chart"), {
+type: 'bar',
+data: {
+labels: {{pnames | safe}},
+datasets: [
+{
+label: "Profits",
+backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850","#e8c3b9","#e8c3b9","#8e5ea2"],
+data: {{pprofit | safe}}
+}
+]
+},
+options: {
+legend: { display: false },
+title: {
+display: true,
+text: 'Profit per product'
+}
+}
+});
+
+
+
+new Chart(document.getElementById("line-chart"), {
+type: 'line',
+data: {
+labels: {{date | safe}},
+datasets: [{
+data: {{dprofit| safe}},
+label: "profit",
+borderColor: "#3e95cd",
+fill: false
+},
+]
+},
+options: {
+title: {
+display: true,
+text: 'profit per day'
+}
+}
+});
+
+
+new Chart(document.getElementById("bar-chart1"), {
+type: 'bar',
+data: {
+labels: {{pname | safe}},
+datasets: [
+{
+label: "sales",
+backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850","#e8c3b9","#e8c3b9","#8e5ea2"],
+data: {{sales | safe}}
+}
+]
+},
+options: {
+legend: { display: false },
+title: {
+display: true,
+text: 'sales per product'
+}
+}
+});
+
+
+
+new Chart(document.getElementById("line-chart1"), {
+type: 'line',
+data: {
+labels: {{dates | safe}},
+datasets: [{
+data: {{dsale|safe}},
+label: "sales",
+borderColor: "#3e95cd",
+fill: false
+},
+]
+},
+options: {
+title: {
+display: true,
+text: 'sales per day'
+}
+}
+});
+
+
+{% endblock %}
